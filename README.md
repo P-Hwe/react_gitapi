@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Meus Repositórios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação React para pesquisar repositórios públicos do GitHub, salvar uma lista local de favoritos e consultar as issues de cada repositório.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- Pesquisa de repositórios pela API do GitHub.
+- Persistência da lista no `localStorage` do navegador.
+- Remoção de repositórios salvos.
+- Visualização de detalhes e issues de um repositório.
+- Filtros de issues por status: todas, abertas ou fechadas.
+- Paginação das issues.
 
-### `npm start`
+## Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- React Router
+- Axios
+- Styled Components
+- React Icons
+- Create React App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requisitos
 
-### `npm test`
+- Node.js e npm instalados.
+- Acesso à internet para consultar a API do GitHub.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como executar
 
-### `npm run build`
+1. Instale as dependências:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Inicie o servidor de desenvolvimento:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+3. Acesse [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Scripts disponíveis
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Comando | Descrição |
+| --- | --- |
+| `npm start` | Inicia a aplicação em modo de desenvolvimento. |
+| `npm test` | Executa os testes no modo interativo. |
+| `npm run build` | Gera a versão otimizada para produção na pasta `build`. |
+| `npm run eject` | Expõe as configurações internas do Create React App. É irreversível. |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Estrutura principal
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```text
+src/
+├── pages/
+│   ├── Main/          # Pesquisa e lista de repositórios
+│   └── Repositorio/   # Detalhes e issues
+├── services/api.js    # Cliente Axios da API do GitHub
+├── routes.js          # Rotas da aplicação
+└── styles/            # Estilos globais
+```
 
-## Learn More
+## Rotas
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `/` — tela inicial com a lista de repositórios salvos.
+- `/repositorio/:repositorio` — detalhes e issues do repositório selecionado.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O nome informado deve seguir o formato `usuario/repositorio`, como `facebook/react`.
 
-### Code Splitting
+## Persistência e API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Os repositórios salvos são serializados em JSON no `localStorage`, usando a chave `repos`. A aplicação utiliza o cliente configurado em `src/services/api.js` para acessar os endpoints da [API do GitHub](https://docs.github.com/en/rest).
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Em ambientes reais, tokens de autenticação não devem ser expostos diretamente no código do frontend. Prefira uma variável de ambiente ou um backend intermediário.
